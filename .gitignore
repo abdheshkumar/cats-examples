@@ -46,7 +46,8 @@ project/plugins/project/
 .bloop/**
 project/.bloop/*
 src/.metals
-
+.idea/*
+.idea/.*
 ### VisualStudioCode ###
 .vscode/*
 !.vscode/settings.json

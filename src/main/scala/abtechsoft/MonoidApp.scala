@@ -1,8 +1,5 @@
 package abtechsoft
 import cats.implicits._
-import cats.effect._
-import org.http4s._, org.http4s.dsl.io._, org.http4s.implicits._
-import cats.data.Kleisli
 
 object MonoidApp extends App {
 
@@ -10,4 +7,7 @@ object MonoidApp extends App {
   def step(word: String) = (1, word.length, Map(word -> 1))
   val (totalWords, chars, occurences) = words.foldMap(step)
   println(totalWords, chars, occurences)
+
+  val names = List(("a", 2), ("b", 3), ("a", 8))
+  println(names.foldMap{case (f,s)=>Map(f->s)})
 }

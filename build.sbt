@@ -9,6 +9,7 @@ lazy val root = project
     libraryDependencies ++= Seq(
       "org.typelevel" %% "cats-core" % "2.0.0",
       "org.typelevel" %% "cats-effect" % "2.0.0",
+      "dev.zio" %% "zio" % "1.0.0-RC17",
       "org.http4s" %% "http4s-dsl" % "0.21.0-SNAPSHOT",
       "org.http4s" %% "http4s-blaze-server" % "0.21.0-SNAPSHOT",
       "org.http4s" %% "http4s-blaze-client" % "0.21.0-SNAPSHOT",
