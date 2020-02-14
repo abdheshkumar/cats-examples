@@ -4,7 +4,8 @@ lazy val root = project
     name := "cats-examples",
     version := "1.0",
     scalaVersion := "2.13.0",
-    scalacOptions ++= Seq(),
+    scalacOptions ++= Seq("-Ymacro-annotations"),
+    //addCompilerPlugin("org.scalamacros" % "paradise" % "2.1.1" cross CrossVersion.full),
     resolvers += Resolver.sonatypeRepo("snapshots"),
     libraryDependencies ++= Seq(
       "org.typelevel" %% "cats-core" % "2.0.0",
@@ -27,7 +28,9 @@ lazy val root = project
       "org.tpolecat" %% "doobie-postgres" % "0.8.6", // Postgres driver 42.2.8 + type mappings.
       "org.tpolecat" %% "doobie-quill" % "0.8.6", // Support for Quill 3.4.10
       "org.tpolecat" %% "doobie-specs2" % "0.8.6" % "test", // Specs2 support for typechecking statements.
-      "org.tpolecat" %% "doobie-scalatest" % "0.8.6" % "test" // ScalaTest support for typechecking statements.
+      "org.tpolecat" %% "doobie-scalatest" % "0.8.6" % "test", // ScalaTest support for typechecking statements.
+      "com.chuusai" %% "shapeless" % "2.3.3",
+      "io.estatico" %% "newtype" % "0.4.3"
     ) ++ Seq(
       "io.circe" %% "circe-core",
       "io.circe" %% "circe-generic",
