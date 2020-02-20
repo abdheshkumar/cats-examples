@@ -12,12 +12,9 @@ object ZioApp extends scala.App {
       override val a: A.Service = new A.Service {}
       override val b: B.Service = new B.Service {}
     }
-    override val platform: Platform =PlatformLive.Default
+    override val platform: Platform = PlatformLive.Default
   }
   val p = putStrLn("Hello! What is your name?")
-
-
-
 
   trait B {
     val b: B.Service
@@ -26,13 +23,10 @@ object ZioApp extends scala.App {
   object B {
 
     trait Service {
-      def t= ZIO.succeed("B dsasd")
+      def t = ZIO.succeed("B dsasd")
     }
 
   }
-
-
-
 
   trait A {
     val a: A.Service
@@ -41,22 +35,36 @@ object ZioApp extends scala.App {
   object A {
 
     trait Service {
-      def t= ZIO.succeed("A dsasd")
+      def t = ZIO.succeed("A dsasd")
     }
 
   }
 
+  trait C {
+    val a: C.Service
+  }
 
-  val a: String => ZIO[A, Throwable, Unit] = _=> ZIO.succeed(())
+  object C {
+
+    trait Service {
+      def c = ZIO.succeed("C dsasd")
+    }
+
+  }
+
+  val a: String => ZIO[A, Throwable, Unit] = _ => ZIO.succeed(())
   val b: ZIO[B, Throwable, String] = ZIO.succeed("B test")
 
-
   val f = b.flatMap(a) // B=>R, R1 => A
+  val result = for {
+    bb <- b
+    aa <- a(bb)
+    cc <- ZIO.access[C](_.a.c)
+  } yield ()
 
   val pgrm = for {
     r <- ZIO.accessM[A with B](_.b.t)
   } yield r
-
 
   runtime.unsafeRun(pgrm)
   /*  val program =

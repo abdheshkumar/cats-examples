@@ -29,6 +29,7 @@ lazy val root = project
       "org.tpolecat" %% "doobie-quill" % "0.8.6", // Support for Quill 3.4.10
       "org.tpolecat" %% "doobie-specs2" % "0.8.6" % "test", // Specs2 support for typechecking statements.
       "org.tpolecat" %% "doobie-scalatest" % "0.8.6" % "test", // ScalaTest support for typechecking statements.
+      "org.scalatest" %% "scalatest" % "3.1.0" % "test",
       "com.chuusai" %% "shapeless" % "2.3.3",
       "io.estatico" %% "newtype" % "0.4.3"
     ) ++ Seq(
