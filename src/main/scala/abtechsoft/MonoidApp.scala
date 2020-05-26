@@ -2,7 +2,7 @@ package abtechsoft
 import cats.implicits._
 
 object MonoidApp extends App {
-
+import cats.effect.IO
   val words = List("asa", "asa", "asas", "asaa")
   def step(word: String) = (1, word.length, Map(word -> 1))
   val (totalWords, chars, occurences) = words.foldMap(step)

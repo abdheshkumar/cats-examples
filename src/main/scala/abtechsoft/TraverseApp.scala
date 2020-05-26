@@ -1,6 +1,7 @@
 package abtechsoft
 import cats.Applicative, cats.implicits._
 object TraverseApp extends App {
+  //Proof why built-in used foldRight
   def traverse[G[_], A, B](
       fa: Vector[A]
   )(f: A => G[B])(implicit G: Applicative[G]): G[Vector[B]] =
@@ -21,4 +22,13 @@ object TraverseApp extends App {
   println(r2, r3)
   //Combine only Some //foldLeft/empty/combine
   println("CombineAll" + x.combineAll)
+  import scala.util._
+
+  //List[Try[String]] -> Option[List[String]]
+  val l: List[Try[String]] = List(Success("Hello"), Failure(new Exception("erro")))
+  val re = l.traverse(_.toOption)
+  println(re)
+  val ll: List[Try[String]] = List(Success("Hello"))
+  val ree: Option[List[String]] = ll.traverse(_.toOption)
+  println(ree)
 }
